@@ -21,17 +21,24 @@ for (x=0;x < 2; x++){
     playerdisplay.innerHTML = playerhand
 }
 function clickhit(){
-    playerhand.push(random())
-    let playerhandnum = 0
 
-    for (x=0;x<playerhand.length;x++){
-        playerhandnum += playerhand[x]
-    }
-    if (playerhandnum > 20){
+    
+    let playerhandnum = 0
+    bustchecker()
+    
+    if (bust){
         alert("bust")
         return
+        
+        
+        
+    }   else {
+        playerhand.push(random())
+
     }
-    console.log(playerhandnum)
+    bustchecker()
+        
+    
     playerdisplay.innerHTML = playerhand
 
 }
@@ -42,5 +49,19 @@ function random(){
     let random = Math.floor(Math.random() * (13 - 1) + 1)
     return cards[random]
 }
+function bustchecker(){
+    let playerhandnum = 0
+    let bust = false
+    for (x = 0;x < playerhand.length;x++){
+        playerhandnum += playerhand[x]
+        
+    }
+    if (playerhandnum > 21){
+        bust = true
+        
+    }
+    return bust
+}
 console.log(dealerhand)
 console.log(playerhand)
+
