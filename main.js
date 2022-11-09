@@ -22,31 +22,25 @@ for (x=0;x < 2; x++){
 }
 function clickhit(){
     let playerhandnum = 0
-    let stop = false
+   
     for (x = 0;x < playerhand.length;x++){
         playerhandnum += playerhand[x]
         console.log(playerhandnum)
-        stop = true
     }
     playerhand.push(random())
-    if (stop){
-        return
-             
-        }
-       else {
         if (playerhandnum > 21){
             alert("bust")
-            
+            return
         }  
-    }
-    playerdisplay.innerHTML = playerhand
+    
+    playerdisplay.innerHTML = playerhand 
 
 }
 function standhit(){
 
 }
 function random(){
-    let random = Math.floor(Math.random() * (13 - 1) + 1)
+    let random = Math.floor(Math.random() * 13)
     return cards[random]
 }
 
