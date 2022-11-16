@@ -47,3 +47,4 @@ function random(){
 console.log(dealerhand)
 console.log(playerhand)
 
+   
