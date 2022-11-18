@@ -13,9 +13,10 @@ let a = 1
 let cards = [a,2,3,4,5,6,7,8,9,10,j,q,k]
 let dealerhand = []
 let playerhand = []
-let stophit = false
-let stopstand = false
+var stophit = false
+var stopstand = false
 let playerhandnum = 0
+let dealerhandnum = 0
 // pick cards from 1-13
 for (x=0;x < 2; x++){
     
@@ -27,7 +28,7 @@ for (x=0;x < 2; x++){
     playerdisplay.innerHTML = playerhand
 }
 
-
+checknum()
 function clickhit(){
     if (stopstand){
         alert("Can't Press this again")
@@ -43,7 +44,6 @@ function clickhit(){
             alert("Bust! Dealer Wins")
             playerdisplay.innerHTML = playerhand 
             stophit = true
-            stopstand = true
             return
         
     }
@@ -52,9 +52,11 @@ function clickhit(){
 
 }
 function checknum(){
+    playerhandnum = 0
     for (x = 0;x < playerhand.length;x++){
         playerhandnum += playerhand[x]
     }
+    console.log(playerhandnum)
     return playerhandnum
 }
 function clickstand(){
@@ -68,8 +70,9 @@ function clickstand(){
     dealerhandnum = 0
     for (x = 0;x<dealerhand.length;x++){
         dealerhandnum += dealerhand[x]
-        add(dealerhandnum)
+        
     }
+    add()
     console.log(dealerhandnum)
     console.log(playerhandnum)
       
@@ -92,8 +95,10 @@ function clickstand(){
     stopstand = true
     stophit = true
 }
-function add(number){
-    if (number <= 15){
+function add(){
+    if (dealerhandnum >= 15){
+        return
+    }   else if (dealerhandnum > playerhandnum){
         dealerhand.push(random())
     }
 }
@@ -101,9 +106,7 @@ function random(){
     let random = Math.floor(Math.random() * 13)
     return cards[random]
 }
-function winner (w,e){
-    
-}
+
 console.log(dealerhand)
 console.log(playerhand)
 
