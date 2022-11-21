@@ -21,7 +21,7 @@ let dealerhandnum = 0
 for (x=0;x < 2; x++){
     
     dealerhand.push(random())
-    dealerdisplay.innerHTML = `?, ${dealerhand[1]}`
+    dealerdisplay.innerHTML = `?, ${dealerhand[1]} `
 }
 for (x=0;x < 2; x++){
     playerhand.push(random())
@@ -48,7 +48,7 @@ function clickhit(){
         
     }
     
-    playerdisplay.innerHTML = playerhand 
+    playerdisplay.innerHTML = playerhand
 
 }
 function checknum(){
@@ -80,31 +80,46 @@ function clickstand(){
         alert("Bust! Player wins")
         dealerdisplay.innerHTML = dealerhand
         return
-    }   else if (dealerhandnum > 15){
-        dealerdisplay.innerHTML = dealerhand
-        return
-    }  
+    } 
     if (dealerhandnum > playerhandnum){
         alert("Dealer Wins!")
     }   else if (playerhandnum === dealerhandnum){
-        alert("draw")
+        alert("Push")
     }   else {
         alert("Player Wins!")
     }
     dealerdisplay.innerHTML = dealerhand
     stopstand = true
-    stophit = true
 }
 function add(){
-    if (dealerhandnum >= 15){
-        return
-    }   else if (dealerhandnum > playerhandnum){
-        dealerhand.push(random())
-    }
+    console.log(dealerhandnum)
+    while (dealerhandnum <= 15){
+        let bob = random()
+        dealerhand.push(bob)
+        dealerhandnum += bob
+        
+    }   
 }
 function random(){
     let random = Math.floor(Math.random() * 13)
-    return cards[random]
+    console.log(random)
+    if (random === 0){
+        if (dealerhandnum < 11){
+            return 11
+        }   else if (dealerhandnum > 11){
+            return 1
+        }
+        } 
+        if (playerhandnum < 11){
+            return 11
+        }   else if (playerhandnum > 11){
+            return 1
+        }
+        else    {
+            return cards[random]
+    }   
+    
+    
 }
 
 console.log(dealerhand)
