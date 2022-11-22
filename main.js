@@ -92,33 +92,29 @@ function clickstand(){
     stopstand = true
 }
 function add(){
-    console.log(dealerhandnum)
     while (dealerhandnum <= 15){
         let bob = random()
         dealerhand.push(bob)
         dealerhandnum += bob
-        
+
     }   
 }
 function random(){
     let random = Math.floor(Math.random() * 13)
-    console.log(random)
     if (random === 0){
-        if (dealerhandnum < 11){
+        if  (playerhandnum < 11){
+            return 11 
+        }   else if (playerhandnum > 11){
+            return 1 
+        }   
+        if  (dealerhandnum < 11){
             return 11
         }   else if (dealerhandnum > 11){
             return 1
         }
-        } 
-        if (playerhandnum < 11){
-            return 11
-        }   else if (playerhandnum > 11){
-            return 1
-        }
-        else    {
-            return cards[random]
-    }   
-    
+    }   else {
+        return cards[random]
+    }
     
 }
 
