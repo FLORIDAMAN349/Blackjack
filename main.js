@@ -18,12 +18,12 @@ var stopstand = false
 let playerhandnum = 0
 let dealerhandnum = 0
 // pick cards from 1-13
-for (x=0;x < 2; x++){
+for (let x=0;x < 2; x++){
     
     dealerhand.push(random())
     dealerdisplay.innerHTML = `?, ${dealerhand[1]} `
 }
-for (x=0;x < 2; x++){
+for (let x=0;x < 2; x++){
     playerhand.push(random())
     playerdisplay.innerHTML = playerhand
 }
@@ -53,7 +53,7 @@ function clickhit(){
 }
 function checknum(){
     playerhandnum = 0
-    for (x = 0;x < playerhand.length;x++){
+    for (let x = 0;x < playerhand.length;x++){
         playerhandnum += playerhand[x]
     }
     console.log(playerhandnum)
@@ -68,7 +68,7 @@ function clickstand(){
         return
     }
     dealerhandnum = 0
-    for (x = 0;x<dealerhand.length;x++){
+    for (let x = 0;x<dealerhand.length;x++){
         dealerhandnum += dealerhand[x]
         
     }
