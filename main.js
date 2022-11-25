@@ -55,6 +55,15 @@ function checknum(){
     playerhandnum = 0
     for (let x = 0;x < playerhand.length;x++){
         playerhandnum += playerhand[x]
+        if  (playerhandnum > 21){
+            for (let x = 0;x < playerhand.length;x++){
+                if (playerhand[x] === 11){
+                    playerhand[x] = 1
+                    playerhandnum -= 10
+                    playerdisplay.innerHTML = playerhand
+                }
+            }
+        }
     }
     console.log(playerhandnum)
     return playerhandnum
@@ -81,12 +90,16 @@ function clickstand(){
         dealerdisplay.innerHTML = dealerhand
         return
     } 
-    if (dealerhandnum > playerhandnum){
-        alert("Dealer Wins!")
+    if (dealerhandnum < playerhandnum){
+        add()
+        if (dealerhandnum < playerhandnum){
+            alert("Player Wins!")
+        }
+        alert("Player Wins!")
     }   else if (playerhandnum === dealerhandnum){
         alert("Push")
     }   else {
-        alert("Player Wins!")
+        alert("Dealer Wins!")
     }
     dealerdisplay.innerHTML = dealerhand
     stopstand = true
@@ -96,7 +109,15 @@ function add(){
         let bob = random()
         dealerhand.push(bob)
         dealerhandnum += bob
-
+        if  (dealerhandnum > 21){
+            for (let x = 0;x < dealerhand.length;x++){
+                if (dealerhand[x] === 11){
+                    dealerhand[x] = 1
+                    dealerhandnum -= 10
+                    dealerdisplay.innerHTML = dealerhand
+                }
+            }
+        }
     }   
 }
 function random(){
