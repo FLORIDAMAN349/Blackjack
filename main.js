@@ -91,10 +91,10 @@ function clickstand(){
         return
     } 
     if (dealerhandnum < playerhandnum){
-        add()
-        if (dealerhandnum < playerhandnum){
-            alert("Player Wins!")
-        }
+        // add()
+        // if (dealerhandnum < playerhandnum){
+        //     alert("Player Wins!")
+        // }
         alert("Player Wins!")
     }   else if (playerhandnum === dealerhandnum){
         alert("Push")
