@@ -8,11 +8,38 @@ let deal = document.getElementById("deal")
 let play = document.getElementById("play")
 hit.addEventListener("click", clickhit)
 stand.addEventListener("click",clickstand)
-let j = 10
-let q = 10
-let k = 10
-let a = 1
-let cards = [a,2,3,4,5,6,7,8,9,10,j,q,k]
+
+// let s1, h1, c1, d1 = 1
+// let s2, h2, c2, d2 = 2 
+// let s3, h3, c3, d3 = 3 
+// let s4, h4, c4, d4 = 4 
+// let s5, h5, c5, d5 = 5 
+// let s6, h6, c6, d6 = 6 
+// let s7, h7, c7, d7 = 7 
+// let s8, h8, c8, d8 = 8 
+// let s9, h9, c9, d9 = 9 
+// let s10, h10, c10, d10 = 10 
+// let sj, hj, cj, dj = 10 
+// let sq, hq, cq, dq = 10 
+// let sk, hk, ck, dk = 10 
+
+
+let cards = [
+    1,2,3,4,5,6,7,8,9,10,10,10,10
+    // s1, h1, c1, d1, 
+    // s2, h2, c2, d2, 
+    // s3, h3, c3, d3, 
+    // s4, h4, c4, d4,
+    // s5, h5, c5, d5,
+    // s6, h6, c6, d6,
+    // s7, h7, c7, d7,
+    // s8, h8, c8, d8,
+    // s9, h9, c9, d9,
+    // s10, h10, c10,d10,
+    // sj, hj, cj, dj,
+    // sq, hq, cq, dq,
+    // sk, hk, ck, dk  
+]
 let dealerhand = []
 let playerhand = []
 var stophit = false
@@ -23,11 +50,12 @@ let dealerhandnum = 0
 for (let x=0;x < 2; x++){
     
     dealerhand.push(random())
+    console.log(dealerhand)
     dealerdisplay.innerHTML = `?, ${dealerhand[1]} `
 }
 for (let x=0;x < 2; x++){
     playerhand.push(random())
-    playerdisplay.innerHTML = playerhand
+    cardsthing()
     play.innerHTML = playerhand[0] + playerhand[1]
 }
 
@@ -146,6 +174,21 @@ function random(){
     }   else {
         return cards[random]
     }
+    
+}
+function cardsthing(){
+    let randomthing = Math.floor(Math.random() * (4-1) + 1)
+    console.log(randomthing)
+    playerdisplay.innerHTML = ""
+    for (let x = 0;x < playerhand.length;x++){
+        let thing = playerhand[x].value += 1
+        if (randomthing == 1){
+            
+        }
+        playerdisplay.innerHTML += `${playerhand[x]},`
+
+    }
+    
     
 }
 
