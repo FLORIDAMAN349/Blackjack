@@ -6,6 +6,8 @@ let hit = document.getElementById("hit")
 let stand = document.getElementById("stand")
 let deal = document.getElementById("deal")
 let play = document.getElementById("play")
+let dealerimg = document.getElementById("dealerimg")
+let playerimg = document.getElementById("playerimg")
 hit.addEventListener("click", clickhit)
 stand.addEventListener("click",clickstand)
 
@@ -185,7 +187,7 @@ function cardsthing(){
         if (randomthing == 1){
             
         }
-        playerdisplay.innerHTML += `${playerhand[x]},`
+        playerimg.src = `cards/1club.png`
 
     }
     
@@ -194,4 +196,4 @@ function cardsthing(){
 
 console.log(dealerhand)
 console.log(playerhand)
-
+playerimg.src = `cards/1club.png`
