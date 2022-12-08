@@ -16,3 +16,8 @@ div {
 button {
     margin: 50px 30px;
 }
+img {
+    margin-top: 1px;
+    width: 210px;
+    height: 330px;
+}
