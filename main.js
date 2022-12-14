@@ -10,6 +10,7 @@ let heart = "heart";
 let spade = "spade";
 let diamond = "diamond";
 let club = "club";
+let array = [];
 hit.addEventListener("click", clickhit);
 stand.addEventListener("click", clickstand);
 
@@ -76,13 +77,13 @@ function clickhit() {
   playerhand.push(random());
   if (checknum() > 21) {
     alert("Bust! Dealer Wins");
-    playerdisplay.innerHTML = playerhand;
+    cardsthing(playerhand, playerdisplay);
 
     stophit = true;
     return;
   }
 
-  playerdisplay.innerHTML = playerhand;
+  cardsthing(playerhand, playerdisplay);
 }
 function checknum() {
   playerhandnum = 0;
@@ -94,7 +95,7 @@ function checknum() {
         if (playerhand[x] === 11) {
           playerhand[x] = 1;
           playerhandnum -= 10;
-          playerdisplay.innerHTML = playerhand;
+          cardsthing(playerhand, playerdisplay);
           play.innerHTML = playerhandnum;
         }
       }
@@ -122,7 +123,7 @@ function clickstand() {
     alert("Bust! Player wins");
     deal.innerHTML = dealerhandnum;
 
-    dealerdisplay.innerHTML = dealerhand;
+    cardsthing(dealerhand, dealerdisplay);
     return;
   }
   if (dealerhandnum < playerhandnum) {
@@ -133,7 +134,7 @@ function clickstand() {
     alert("Dealer Wins!");
   }
   deal.innerHTML = dealerhandnum;
-  dealerdisplay.innerHTML = dealerhand;
+  cardsthing(dealerhand, dealerdisplay);
   stopstand = true;
 }
 function add() {
@@ -146,7 +147,7 @@ function add() {
         if (dealerhand[x] === 11) {
           dealerhand[x] = 1;
           dealerhandnum -= 10;
-          dealerdisplay.innerHTML = dealerhand;
+          cardsthing(dealerhand, dealerdisplay);
           deal.innerHTML = dealerhandnum;
         }
       }
@@ -171,16 +172,16 @@ function random() {
   }
 }
 function cardsthing(L, M) {
-  let asd = "";
   for (let x = 0; x < L.length; x++) {
     let thing = L[x];
     if (thing === 11) {
       thing = 1;
     }
-    let randomthing = Math.floor(Math.random() * (4 - 1) + 1);
+    let randomthing = Math.floor(Math.random() * (5 - 1) + 1);
     console.log(randomthing);
+    array.push(`${thing}spade`);
     if (randomthing == 1) {
-      asd += `<img src="cards/${thing}spade.png">`;
+      asd += `<img id="${thing}spade"src="cards/${thing}spade.png">`;
       M.innerHTML = asd;
     } else if (randomthing == 2) {
       asd += `<img src="cards/${thing}heart.png">`;
@@ -194,6 +195,12 @@ function cardsthing(L, M) {
     }
   }
 }
-
+function checkarraything(b) {
+  for (let x = 0; x < array.length; x++) {
+    if (array[x] === b) {
+      let randnum = Math.floor(Math.random() * (5 - 1) + 1);
+    }
+  }
+}
 console.log(dealerhand);
 console.log(playerhand);
