@@ -11,6 +11,7 @@ let spade = "spade";
 let diamond = "diamond";
 let club = "club";
 let array = [];
+cahds = {};
 hit.addEventListener("click", clickhit);
 stand.addEventListener("click", clickstand);
 
@@ -58,9 +59,9 @@ let dealerhandnum = 0;
 // }
 for (let x = 0; x < 2; x++) {
   playerhand.push(random());
-  cardsthing(playerhand, playerdisplay);
+  start(playerhand, playerdisplay);
   dealerhand.push(random());
-  cardsthing(dealerhand, dealerdisplay);
+  start(dealerhand, dealerdisplay);
 }
 
 checknum();
@@ -171,7 +172,8 @@ function random() {
     return cards[random];
   }
 }
-function cardsthing(L, M) {
+function start(L, M) {
+  let asd = "";
   for (let x = 0; x < L.length; x++) {
     let thing = L[x];
     if (thing === 11) {
@@ -195,11 +197,36 @@ function cardsthing(L, M) {
     }
   }
 }
-function checkarraything(b) {
-  for (let x = 0; x < array.length; x++) {
-    if (array[x] === b) {
-      let randnum = Math.floor(Math.random() * (5 - 1) + 1);
-    }
+
+function cardsthing(L, M) {
+  let thing = L.pop();
+  console.log(thing);
+  if (thing === 11) {
+    thing = 1;
+  }
+  let randomthing = Math.floor(Math.random() * (5 - 1) + 1);
+
+  if (randomthing == 1) {
+    M.innerHTML += `<img id="${thing}spade"src="cards/${thing}spade.png">`;
+    checkarraything(thing, "spade");
+    // M.innerHTML = asd;
+  } else if (randomthing == 2) {
+    M.innerHTML += `<img src="cards/${thing}heart.png">`;
+    // M.innerHTML = asd;
+  } else if (randomthing == 3) {
+    M.innerHTML += `<img src="cards/${thing}club.png">`;
+    // M.innerHTML = asd;
+  } else if (randomthing == 4) {
+    M.innerHTML += `<img src="cards/${thing}diamond.png">`;
+    // M.innerHTML = asd;
+  }
+}
+
+checkarraything(1, "spade");
+function checkarraything(o, k) {
+  cahds[`${o}${k}`]++;
+  if (isNaN(cahds[`${o}${k}`])) {
+    cahds[`${o}${k}`] = 1;
   }
 }
 console.log(dealerhand);
