@@ -183,7 +183,7 @@ function start(L, M) {
     console.log(randomthing);
     array.push(`${thing}spade`);
     if (randomthing == 1) {
-      asd += `<img id="${thing}spade"src="cards/${thing}spade.png">`;
+      asd += `<img src="cards/${thing}spade.png">`;
       M.innerHTML = asd;
     } else if (randomthing == 2) {
       asd += `<img src="cards/${thing}heart.png">`;
@@ -207,7 +207,7 @@ function cardsthing(L, M) {
   let randomthing = Math.floor(Math.random() * (5 - 1) + 1);
 
   if (randomthing == 1) {
-    M.innerHTML += `<img id="${thing}spade"src="cards/${thing}spade.png">`;
+    M.innerHTML += `<img src="cards/${thing}spade.png">`;
     checkarraything(thing, "spade");
     // M.innerHTML = asd;
   } else if (randomthing == 2) {
