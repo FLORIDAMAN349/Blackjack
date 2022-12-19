@@ -198,8 +198,8 @@ function add() {
   }
 }
 function random() {
-  let random = Math.floor(Math.random() * 13);
-  if (random === 0) {
+  let random = Math.floor(Math.random() * 53);
+  if (cards[random].value === 1) {
     if (playerhandnum < 11) {
       return 11;
     } else if (playerhandnum > 11) {
