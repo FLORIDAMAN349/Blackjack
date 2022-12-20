@@ -18,6 +18,13 @@ button {
 }
 img {
     margin-top: 1px;
-    width: 210px;
-    height: 330px;
+    margin-right: 10px;
+    width: 150px;
+    height: 236px;
+    perspective: 1000px;
+}
+
+img:hover{
+    
+    transform: rotateY(180deg);
 }
