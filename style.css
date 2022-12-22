@@ -22,6 +22,7 @@ img {
     width: 150px;
     height: 236px;
     perspective: 1000px;
+    border-radius: 5px;
 }
 
 img:hover{

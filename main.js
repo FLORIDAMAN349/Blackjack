@@ -10,7 +10,6 @@ cahds = {};
 hit.addEventListener("click", clickhit);
 stand.addEventListener("click", clickstand);
 document.addEventListener("click", start);
-let pressed = false;
 
 let cards = [
   { name: "1club", value: 11 },
@@ -73,20 +72,22 @@ let dealerhand = [];
 let playerhand = [];
 var stophit = false;
 var stopstand = false;
+let pressed = false;
 let playerhandnum = 0;
 let dealerhandnum = 0;
 function start() {
-  if (pressed) {
-    return;
-  }
+  // if (pressed) {
+  //   return;
+  // }
   for (let x = 0; x < 2; x++) {
-    playerhand.push(random());
-    dealerhand.push(random());
+    playerhand.push(randint());
+    dealerhand.push(randint());
   }
   console.log(dealerhand, playerhand);
   cardsthing(playerhand, playerdisplay, 0);
   cardsthing(dealerhand, dealerdisplay, 1);
   checknum();
+  clickhit();
   pressed = true;
 }
 
@@ -100,7 +101,7 @@ function clickhit() {
     return;
   }
   checknum();
-  playerhand.push(random());
+  playerhand.push(randint());
   if (checknum() > 21) {
     alert("Bust! Dealer Wins");
     cardsthing(playerhand, playerdisplay);
@@ -112,22 +113,22 @@ function clickhit() {
   cardsthing(playerhand, playerdisplay, 0);
 }
 function checknum() {
-  playerhandnum = 0;
-  for (let x = 0; x < playerhand.length; x++) {
-    playerhandnum += playerhand[x].value;
-    play.innerHTML = playerhandnum;
-    if (playerhandnum > 21) {
-      for (let x = 0; x < playerhand.length; x++) {
-        if (playerhand[x].value === 11) {
-          playerhand[x].value = 1;
-          playerhandnum -= 10;
-          cardsthing(playerhand, playerdisplay, 0);
-          play.innerHTML = playerhandnum;
-        }
-      }
-    }
-  }
-  return playerhandnum;
+  //   playerhandnum = 0;
+  //   for (let x = 0; x < playerhand.length; x++) {
+  //     playerhandnum += playerhand[x].value;
+  //     play.innerHTML = playerhandnum;
+  //     if (playerhandnum > 21) {
+  //       for (let x = 0; x < playerhand.length; x++) {
+  //         if (playerhand[x].value === 11) {
+  //           playerhand[x].value = 1;
+  //           playerhandnum -= 10;
+  //           cardsthing(playerhand, playerdisplay, 0);
+  //           play.innerHTML = playerhandnum;
+  //         }
+  //       }
+  //     }
+  //   }
+  //   return playerhandnum;
 }
 function clickstand() {
   if (stopstand) {
@@ -163,32 +164,43 @@ function clickstand() {
   cardsthing(dealerhand, dealerdisplay, 0);
   stopstand = true;
 }
-function add() {
-  while (dealerhandnum <= 15) {
-    let bob = random();
-    dealerhand.push(bob);
-    dealerhandnum += bob.value;
-    if (dealerhandnum > 21) {
-      for (let x = 0; x < dealerhand.length; x++) {
-        if (dealerhand[x].value === 11) {
-          dealerhand[x].value = 1;
-          dealerhandnum -= 10;
-          cardsthing(dealerhand, dealerdisplay, 0);
-          deal.innerHTML = dealerhandnum;
-        }
-      }
-    }
-  }
-}
-function random() {
+// function add() {
+//   while (dealerhandnum <= 15) {
+//     let bob = randint();
+//     dealerhand.push(bob);
+//     dealerhandnum += bob.value;
+//     if (dealerhandnum > 21) {
+//       for (let x = 0; x < dealerhand.length; x++) {
+//         if (dealerhand[x].value === 11) {
+//           dealerhand[x].value = 1;
+//           dealerhandnum -= 10;
+//           cardsthing(dealerhand, dealerdisplay, 0);
+//           deal.innerHTML = dealerhandnum;
+//         }
+//       }
+//     }
+//   }
+// }
+function randint() {
+  console.log(playerhand, dealerhand);
   let random = Math.floor(Math.random() * 52);
-  checkthing(random);
-  return cards[random];
+  let thing = cards[random];
+  cahds[`${thing.name}`]++;
+  if (isNaN(cahds[`${thing.name}`])) {
+    cahds[`${thing.name}`] = 1;
+  }
+  if (cahds[`${thing.name}`] >= 2) {
+    cards.splice(cahds[`${thing.name}`]);
+
+    return;
+  } else {
+    return cards[random];
+  }
 }
 function cardsthing(L, M, test) {
   M.innerHTML = "";
   if (test === 1) {
-    M.innerHTML += `<img src="cards/${backside}.png"><img src="cards/${L[1].name}.png">`;
+    M.innerHTML += `<img src="cards/backside.png"><img src="cards/${L[1].name}.png">`;
   } else {
     for (let x = 0; x < L.length; x++) {
       M.innerHTML += `<img src="cards/${L[x].name}.png">`;
@@ -196,13 +208,6 @@ function cardsthing(L, M, test) {
   }
 }
 
-function checkthing(k) {
-  let thing = cards[k];
-  cahds[`${thing.name}`]++;
-  if (isNaN(cahds[`${thing.name}`])) {
-    cahds[`${thing.name}`] = 1;
-  } else if (cahds[`${thing.name}`] == 3) {
-    random();
-  }
-  console.log(cahds);
+function checkthing() {
+  return Math.floor(Math.random() * 52);
 }
