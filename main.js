@@ -183,19 +183,21 @@ function clickstand() {
 // }
 function randint() {
   console.log(playerhand, dealerhand);
-  let random = Math.floor(Math.random() * 52);
+  let random = Math.floor(Math.random() * cards.length);
   let thing = cards[random];
-  cahds[`${thing.name}`]++;
-  if (isNaN(cahds[`${thing.name}`])) {
-    cahds[`${thing.name}`] = 1;
-  }
-  if (cahds[`${thing.name}`] >= 2) {
-    cards.splice(cahds[`${thing.name}`]);
+  console.log(random);
 
-    return;
-  } else {
-    return cards[random];
+  if (cahds[`${thing.name}`] >= 1) {
+    cards.splice(random, 1);
+
+    return cards[checkthing()];
   }
+
+  if (isNaN(cahds[`${thing.name}`])) {
+    cahds[`${thing.name}`] = 0;
+  }
+  cahds[`${thing.name}`]++;
+  return cards[random];
 }
 function cardsthing(L, M, test) {
   M.innerHTML = "";
@@ -209,5 +211,5 @@ function cardsthing(L, M, test) {
 }
 
 function checkthing() {
-  return Math.floor(Math.random() * 52);
+  return Math.floor(Math.random() * cards.length);
 }
