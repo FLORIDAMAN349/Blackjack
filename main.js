@@ -186,7 +186,7 @@ function randint() {
   let random = Math.floor(Math.random() * cards.length);
   let thing = cards[random];
   console.log(random);
-
+  cahds[`${thing.name}`]++;
   if (cahds[`${thing.name}`] >= 1) {
     cards.splice(random, 1);
 
@@ -195,9 +195,10 @@ function randint() {
 
   if (isNaN(cahds[`${thing.name}`])) {
     cahds[`${thing.name}`] = 0;
+    return cards[random];
   }
-  cahds[`${thing.name}`]++;
-  return cards[random];
+  
+  
 }
 function cardsthing(L, M, test) {
   M.innerHTML = "";
