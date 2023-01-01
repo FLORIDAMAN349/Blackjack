@@ -76,9 +76,9 @@ let pressed = false;
 let playerhandnum = 0;
 let dealerhandnum = 0;
 function start() {
-  // if (pressed) {
-  //   return;
-  // }
+  if (pressed) {
+    return;
+  }
   for (let x = 0; x < 2; x++) {
     playerhand.push(randint());
     dealerhand.push(randint());
@@ -87,7 +87,6 @@ function start() {
   cardsthing(playerhand, playerdisplay, 0);
   cardsthing(dealerhand, dealerdisplay, 1);
   checknum();
-  clickhit();
   pressed = true;
 }
 
@@ -113,22 +112,22 @@ function clickhit() {
   cardsthing(playerhand, playerdisplay, 0);
 }
 function checknum() {
-  //   playerhandnum = 0;
-  //   for (let x = 0; x < playerhand.length; x++) {
-  //     playerhandnum += playerhand[x].value;
-  //     play.innerHTML = playerhandnum;
-  //     if (playerhandnum > 21) {
-  //       for (let x = 0; x < playerhand.length; x++) {
-  //         if (playerhand[x].value === 11) {
-  //           playerhand[x].value = 1;
-  //           playerhandnum -= 10;
-  //           cardsthing(playerhand, playerdisplay, 0);
-  //           play.innerHTML = playerhandnum;
-  //         }
-  //       }
-  //     }
-  //   }
-  //   return playerhandnum;
+    playerhandnum = 0;
+    for (let x = 0; x < playerhand.length; x++) {
+      playerhandnum += playerhand[x].value;
+      play.innerHTML = playerhandnum;
+      if (playerhandnum > 21) {
+        for (let x = 0; x < playerhand.length; x++) {
+          if (playerhand[x].value === 11) {
+            playerhand[x].value = 1;
+            playerhandnum -= 10;
+            cardsthing(playerhand, playerdisplay, 0);
+            play.innerHTML = playerhandnum;
+          }
+        }
+      }
+    }
+    return playerhandnum;
 }
 function clickstand() {
   if (stopstand) {
@@ -164,41 +163,38 @@ function clickstand() {
   cardsthing(dealerhand, dealerdisplay, 0);
   stopstand = true;
 }
-// function add() {
-//   while (dealerhandnum <= 15) {
-//     let bob = randint();
-//     dealerhand.push(bob);
-//     dealerhandnum += bob.value;
-//     if (dealerhandnum > 21) {
-//       for (let x = 0; x < dealerhand.length; x++) {
-//         if (dealerhand[x].value === 11) {
-//           dealerhand[x].value = 1;
-//           dealerhandnum -= 10;
-//           cardsthing(dealerhand, dealerdisplay, 0);
-//           deal.innerHTML = dealerhandnum;
-//         }
-//       }
-//     }
-//   }
-// }
+function add() {
+  while (dealerhandnum <= 15) {
+    let bob = randint();
+    dealerhand.push(bob);
+    dealerhandnum += bob.value;
+    if (dealerhandnum > 21) {
+      for (let x = 0; x < dealerhand.length; x++) {
+        if (dealerhand[x].value === 11) {
+          dealerhand[x].value = 1;
+          dealerhandnum -= 10;
+          cardsthing(dealerhand, dealerdisplay, 0);
+          deal.innerHTML = dealerhandnum;
+        }
+      }
+    }
+  }
+}
 function randint() {
-  console.log(playerhand, dealerhand);
-  let random = Math.floor(Math.random() * cards.length);
+   let random = Math.floor(Math.random() * cards.length);
   let thing = cards[random];
   console.log(random);
   cahds[`${thing.name}`]++;
-  if (cahds[`${thing.name}`] >= 1) {
-    cards.splice(random, 1);
-
-    return cards[checkthing()];
-  }
-
   if (isNaN(cahds[`${thing.name}`])) {
-    cahds[`${thing.name}`] = 0;
+    cahds[`${thing.name}`] = 1;
     return cards[random];
   }
-  
-  
+  console.log(cahds[`${thing.name}`])
+  if (cahds[`${thing.name}`] >= 2) {
+    cards.splice(random, 1);
+
+    return randint()
+  } 
 }
 function cardsthing(L, M, test) {
   M.innerHTML = "";
@@ -211,6 +207,3 @@ function cardsthing(L, M, test) {
   }
 }
 
-function checkthing() {
-  return Math.floor(Math.random() * cards.length);
-}
