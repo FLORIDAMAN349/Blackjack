@@ -91,6 +91,9 @@ function start() {
 }
 
 function clickhit() {
+  if (!pressed){
+    return
+  }
   if (stopstand) {
     alert("Can't Press this again");
     return;
