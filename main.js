@@ -208,5 +208,6 @@ function cardsthing(L, M, test) {
       M.innerHTML += `<img src="cards/${L[x].name}.png">`;
     }
   }
+  document.getElementById("backside").innerHTML = " "
 }
 
