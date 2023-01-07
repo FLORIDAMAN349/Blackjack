@@ -6,6 +6,7 @@ let deal = document.getElementById("deal");
 let play = document.getElementById("play");
 let dealerimg = document.getElementById("dealerimg");
 let playerimg = document.getElementById("playerimg");
+let back = document.getElementsByClassName("backpic")[0]
 cahds = {};
 hit.addEventListener("click", clickhit);
 stand.addEventListener("click", clickstand);
@@ -202,12 +203,14 @@ function randint() {
 function cardsthing(L, M, test) {
   M.innerHTML = "";
   if (test === 1) {
-    M.innerHTML += `<img src="cards/backside.png"><img src="cards/${L[1].name}.png">`;
+    M.innerHTML += `<img class="backpic"src="cards/backside.png"><img class="frontside"src="cards/${L[1].name}.png">`;
   } else {
     for (let x = 0; x < L.length; x++) {
-      M.innerHTML += `<img src="cards/${L[x].name}.png">`;
+      M.innerHTML += `<img class="frontside" src="cards/${L[x].name}.png">`;
     }
   }
-  document.getElementById("backside").innerHTML = " "
+  
+  // back.style.transform = "rotateY(180deg)"
+  // back.style.transition = "transform 0.5s"
 }
 
