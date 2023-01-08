@@ -26,11 +26,16 @@ img {
     position: relative;
 }
 
-.backpic:hover{
+.topbackside{
+    position:absolute;
     
-    transform: rotateY(180deg);
-    transition: transform 0.5s;
+    
+}
+.bottombackside{
+    position: absolute;
 }
 .frontside{
-
+    position:absolute;
+    
+    transform: rotateY(180deg)
 }

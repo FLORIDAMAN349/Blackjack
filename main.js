@@ -6,7 +6,8 @@ let deal = document.getElementById("deal");
 let play = document.getElementById("play");
 let dealerimg = document.getElementById("dealerimg");
 let playerimg = document.getElementById("playerimg");
-let back = document.getElementsByClassName("backpic")[0]
+let back = document.getElementsByClassName("backpic")
+let front = document.getElementsByClassName("frontside")
 cahds = {};
 hit.addEventListener("click", clickhit);
 stand.addEventListener("click", clickstand);
@@ -201,16 +202,27 @@ function randint() {
   } 
 }
 function cardsthing(L, M, test) {
+  
   M.innerHTML = "";
   if (test === 1) {
     M.innerHTML += `<img class="backpic"src="cards/backside.png"><img class="frontside"src="cards/${L[1].name}.png">`;
-  } else {
+  } else if (M == dealerhand){
+    M.innerHTML += `<img class="frontside" src="cards/1spade.png">`
+    console.log("OOOOH")
+  } else  {
     for (let x = 0; x < L.length; x++) {
       M.innerHTML += `<img class="frontside" src="cards/${L[x].name}.png">`;
     }
   }
   
-  // back.style.transform = "rotateY(180deg)"
-  // back.style.transition = "transform 0.5s"
 }
-
+function flipcard(){
+  for (let x = 0;x<back.length;x++){
+    back[x].style.transform = "rotateY(180deg)"
+    back[x].style.transition = "transform 1s"
+  }
+  for (let x = 0;x<front.length;x++){
+    front[x].style.transform = "rotateY(180deg)"
+    front[x].style.transition = "transform 1s"
+  }
+}
