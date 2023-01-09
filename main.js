@@ -82,7 +82,7 @@ var stopstand = false;
 let pressed = false;
 let playerhandnum = 0;
 let dealerhandnum = 0;
-// First
+// First click, sets up cards
 function start() {
   if (pressed) {
     return;
@@ -98,7 +98,9 @@ function start() {
   checknum();
   pressed = true;
   again.style.visibility = "visible"
+  document.getElementById("start").innerHTML = ""
 }
+// restart button, resets everything
 function restart() {
   
 
@@ -172,8 +174,9 @@ function restart() {
   start();
   pressed = true
 }
-
+// hit button
 function clickhit() {
+  // if other buttons are already pressed, this cannot be pressed again
   if (!pressed) {
     return;
   }
@@ -181,10 +184,12 @@ function clickhit() {
     alert("Can't Press this again");
     return;
   }
+  // If bust, cant press again
   if (stophit) {
     alert("Bust! Dealer Wins");
     return;
   }
+  //  if the number is above 21 cant press again, alert
   checknum();
   playerhand.push(randint());
   if (checknum() > 21) {
@@ -194,9 +199,10 @@ function clickhit() {
     stophit = true;
     return;
   }
-
+  // display the cards
   cardsthing(playerhand, playerdisplay, 0);
 }
+// check if the number is above 21 
 function checknum() {
   playerhandnum = 0;
   for (let x = 0; x < playerhand.length; x++) {
@@ -215,7 +221,9 @@ function checknum() {
   }
   return playerhandnum;
 }
+// stand button
 function clickstand() {
+  // if pressed already cant press again
   if (stopstand) {
     return;
   }
@@ -224,13 +232,14 @@ function clickstand() {
     return;
   }
   dealerhandnum = 0;
+  // doesnt need to check number after every time can just automate
   for (let x = 0; x < dealerhand.length; x++) {
     dealerhandnum += dealerhand[x].value;
   }
   add();
   console.log(dealerhandnum);
   console.log(playerhandnum);
-
+  // if number is above 21, bust
   if (dealerhandnum > 21) {
     alert("Bust! Player wins");
     deal.innerHTML = dealerhandnum;
@@ -238,6 +247,7 @@ function clickstand() {
     cardsthing(dealerhand, dealerdisplay, 0);
     return;
   }
+  // check between scores
   if (dealerhandnum < playerhandnum) {
     alert("Player Wins!");
   } else if (playerhandnum === dealerhandnum) {
@@ -249,6 +259,7 @@ function clickstand() {
   cardsthing(dealerhand, dealerdisplay, 0);
   stopstand = true;
 }
+// add new card for dealer and check if it is above 15
 function add() {
   while (dealerhandnum <= 15) {
     let bob = randint();
@@ -266,11 +277,13 @@ function add() {
     }
   }
 }
+// select random number
 function randint() {
   let random = Math.floor(Math.random() * cards.length);
   let thing = cards[random];
   console.log(random);
   cahds[`${thing.name}`]++;
+  // if the card is called more than 2 times it is taken out of the array and another card is selected
   if (isNaN(cahds[`${thing.name}`])) {
     cahds[`${thing.name}`] = 1;
     return cards[random];
@@ -283,6 +296,7 @@ function randint() {
   }
 }
 function cardsthing(L, M, test) {
+  // displaying the cards
   M.innerHTML = "";
   if (test === 1) {
     M.innerHTML += `<img class="backpic"src="cards/backside.png"><img class="frontside"src="cards/${L[1].name}.png">`;
